@@ -20,6 +20,10 @@ class Juegos(pygame.sprite.Sprite):
                 self.rect.left = 0
             elif self.rect.right >870:
                 self.rect.right = 840
+            if self.rect.top <=350:
+               self.rect.top = 1
+            elif self.rect.bottom > 900:
+               self.rect.bottom = 2
                 
     def disparar (self, x,y):
         miBala = Bala (x,y)
@@ -69,6 +73,10 @@ def main():
                     elif event.key == K_s:
                         x,y = jugador.rect.center
                         jugador.disparar(x,y)
+                    if event.key == K_UP:
+                        jugador.rect.top -= jugador.velocidad
+                    elif event.key == K_DOWN:
+                        jugador.rect.bottom += jugador.velocidad
                     
         venta.blit(ImagenFondo, (0,0))
         DemoBala.dibujar(venta)
